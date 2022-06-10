@@ -28,16 +28,35 @@
 // callback (resolve[terpenuhi], reject[tdk dipenuhi], finally[selesai])
 // aksi (then[terpenuhi] /catch[tdk dipenuhi])
 
-//contoh 1
-let ditepati = false;
-const janji1 = new Promise((resolve, reject) => {
+// //contoh 1
+// let ditepati = false;
+// const janji1 = new Promise((resolve, reject) => {
+//   if (ditepati) {
+//     resolve('janji telah ditepati');
+//   } else {
+//     reject('ingkar janji');
+//   }
+// });
+
+// janji1
+//   .then((Response) => console.log('OK, ' + Response))
+//   .catch((Response) => console.log('not OK, ' + Response));
+
+// contoh 2
+
+let ditepati = true;
+const janji2 = new Promise((resolve, reject) => {
   if (ditepati) {
-    resolve('janji telah ditepati');
+    setTimeout(() => {
+      resolve('Janji ditepati setelah beberapa waktu!');
+    }, 2000);
   } else {
-    reject('ingkar janji');
+    setTimeout(() => {
+      resolve('Janji tidak ditepati setelah beberapa waktu!');
+    }, 2000);
   }
 });
 
-janji1
-  .then((Response) => console.log('OK, ' + Response))
-  .catch((Response) => console.log('not OK, ' + Response));
+console.log('mulai');
+console.log(janji2.then(() => console.log(janji2)));
+console.log('selesai');
