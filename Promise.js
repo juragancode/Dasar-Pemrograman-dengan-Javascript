@@ -58,5 +58,9 @@ const janji2 = new Promise((resolve, reject) => {
 });
 
 console.log('mulai');
-console.log(janji2.then(() => console.log(janji2)));
+// console.log(janji2.then(() => console.log(janji2)));
+janji2
+  .finally(() => console.log('selesai menunggu!'))
+  .then((Response) => console.log('OK, ' + Response))
+  .catch((Response) => console.log('not OK, ' + Response));
 console.log('selesai');
