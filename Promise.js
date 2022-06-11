@@ -42,25 +42,62 @@
 //   .then((Response) => console.log('OK, ' + Response))
 //   .catch((Response) => console.log('not OK, ' + Response));
 
-// contoh 2
+// // contoh 2
+// let ditepati = true;
+// const janji2 = new Promise((resolve, reject) => {
+//   if (ditepati) {
+//     setTimeout(() => {
+//       resolve('Janji ditepati setelah beberapa waktu!');
+//     }, 2000);
+//   } else {
+//     setTimeout(() => {
+//       resolve('Janji tidak ditepati setelah beberapa waktu!');
+//     }, 2000);
+//   }
+// });
 
-let ditepati = true;
-const janji2 = new Promise((resolve, reject) => {
-  if (ditepati) {
-    setTimeout(() => {
-      resolve('Janji ditepati setelah beberapa waktu!');
-    }, 2000);
-  } else {
-    setTimeout(() => {
-      resolve('Janji tidak ditepati setelah beberapa waktu!');
-    }, 2000);
-  }
+// console.log('mulai');
+// // console.log(janji2.then(() => console.log(janji2)));
+// janji2
+//   .finally(() => console.log('selesai menunggu!'))
+//   .then((Response) => console.log('OK, ' + Response))
+//   .catch((Response) => console.log('not OK, ' + Response));
+// console.log('selesai');
+
+// promise.all
+
+const film = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([
+      {
+        Judul: 'october',
+        Sutradara: 'Shoojit Sircar',
+        Pemeran: 'Banita Sandhu, Varun Dhawan',
+      },
+    ]);
+  }, 2000);
 });
 
-console.log('mulai');
-// console.log(janji2.then(() => console.log(janji2)));
-janji2
-  .finally(() => console.log('selesai menunggu!'))
-  .then((Response) => console.log('OK, ' + Response))
-  .catch((Response) => console.log('not OK, ' + Response));
-console.log('selesai');
+const cuaca = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([
+      {
+        Kota: 'Banjarbaru',
+        Suhu: '28',
+      },
+    ]);
+  }, 4000);
+});
+
+// film.then((Response) => console.log(Response));
+// cuaca.then((Response) => console.log(Response));
+
+//bisa dijalankan sekaligus
+Promise.all([film, cuaca])
+  // .then((Response) => console.log(Response));
+  // dipecah menggunakan spread operator
+  .then((Response) => {
+    const [film, cuaca] = Response;
+    console.log(film);
+    console.log(cuaca);
+  });
