@@ -13,5 +13,11 @@ function cobaPromise() {
     }, 2000);
   });
 }
-const coba = cobaPromise();
-coba.then(() => console.log(coba));
+// const coba = cobaPromise();
+// coba.then(() => console.log(coba));
+
+async function cobaAsync() {
+  const coba = await cobaPromise();
+  console.log(coba);
+}
+cobaAsync();
